@@ -13,7 +13,7 @@ framework, ce qui nous a permis de bien maîtriser les bases du
 développement web.
 
 Le site contient six pages : la boutique principale, une fiche produit
-détaillée, un panier, un formulaire de paiement, une page d'impact
+détaillée, un panier, un formulaire de paiement et confirmation, une page d'impact
 écologique et une page de localisation avec Google Maps intégré.
 
 ## Techniquement
