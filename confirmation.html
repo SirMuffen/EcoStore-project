@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Confirmation — EcoStore</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .confirmation {
+      text-align: center;
+      padding: 80px 20px;
+    }
+    .card {
+      max-width: 720px;
+      margin: 0 auto;
+      background: white;
+      padding: 40px;
+      border-radius: 14px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    }
+    .success-icon {
+      font-size: 3.8rem;
+      margin-bottom: 12px;
+    }
+    .order-id {
+      display: inline-block;
+      margin-top: 12px;
+      padding: 8px 14px;
+      background: #f4f9f4;
+      border-radius: 20px;
+      color: #2d6a4f;
+      font-weight: 600;
+    }
+    .actions { margin-top: 30px; display:flex; gap:12px; justify-content:center; flex-wrap:wrap }
+    .btn { display:inline-block; padding:12px 20px; border-radius:8px; text-decoration:none; font-weight:600 }
+    .btn-primary { background: #2d6a4f; color: white }
+    .btn-secondary { background: #f4f9f4; color: #2d6a4f }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <nav class="navbar">
+      <div class="logo"><span>🌿</span><span class="logo-texte">EcoStore</span></div>
+      <ul class="nav-liens">
+        <li><a href="index.html">Boutique</a></li>
+        <li><a href="produit.html">Produit</a></li>
+        <li><a href="panier.html">Panier</a></li>
+        <li><a href="paiement.html">Paiement</a></li>
+        <li><a href="impact.html">Impact</a></li>
+        <li><a href="localisation.html">Points de vente</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="container confirmation">
+    <div class="card">
+      <div class="success-icon">✅</div>
+      <h1>Commande confirmée</h1>
+      <p style="color:#555; margin-top:10px;">Merci pour votre achat ! Votre commande a bien été prise en compte.</p>
+
+      <div style="margin-top:22px;">
+        <div>Numéro de commande</div>
+        <div id="orderId" class="order-id">—</div>
+      </div>
+
+      <div style="margin-top:18px; color:#555;">Vous recevrez un email de confirmation sous peu. Livraison estimée sous 48h à Casablanca.</div>
+
+      <div class="actions">
+        <a href="index.html" class="btn btn-primary">Retour à la boutique</a>
+        <a href="localisation.html" class="btn btn-secondary">Voir points de vente</a>
+        <a href="panier.html" class="btn btn-secondary" id="viewOrderBtn">Voir ma commande</a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer" style="margin-top:80px; padding:30px 0; text-align:center; background:#1a3a2a; color:white;">
+    <p>EcoStore — Ayoub Abida & Youssef Al Hafrawi | EMSI 2026</p>
+  </footer>
+
+  <script>
+    // Generate a lightweight order id and display it.
+    // Also try to preserve a small token from localStorage if present.
+    (function(){
+      try{
+        var token = localStorage.getItem('ecostore_order_token');
+        var id = token || ('ES' + Date.now().toString().slice(-6) + Math.floor(Math.random()*900+100));
+        document.getElementById('orderId').textContent = id;
+        // clear cart token if any
+        localStorage.removeItem('ecostore_cart');
+        localStorage.removeItem('ecostore_order_token');
+
+        // optional: attach view order button to scroll to recap or open panier
+        var viewBtn = document.getElementById('viewOrderBtn');
+        if(viewBtn){ viewBtn.addEventListener('click', function(e){ e.preventDefault(); window.location.href='panier.html'; }); }
+
+      }catch(err){ console.error('confirmation page error',err); }
+    })();
+  </script>
+</body>
+</html>
