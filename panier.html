@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mon Panier - EcoStore</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    .hero-panier {
+      background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.pexels.com/photos/5632386/pexels-photo-5632386.jpeg?auto=compress&cs=tinysrgb&w=1260');
+      background-size: cover;
+      background-position: center;
+      padding: 80px 0;
+      text-align: center;
+      color: white;
+    }
+    .img-mini {
+      width: 60px;
+      height: 60px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-right: 20px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .table-panier {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+      border-radius: 15px;
+      overflow: hidden;
+      margin: 50px 0;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+    }
+    .table-panier th {
+      background: #f4f9f4;
+      color: #2d6a4f;
+      padding: 20px;
+      text-align: left;
+      font-family: 'Playfair Display', serif;
+    }
+    .table-panier td {
+      padding: 20px;
+      border-bottom: 1px solid #f0f0f0;
+      vertical-align: middle;
+      font-size: 1.1rem;
+    }
+    .total-section {
+      text-align: right;
+      margin-bottom: 80px;
+      padding: 20px;
+      background: #fdfdfd;
+      border-radius: 10px;
+    }
+    .btn-checkout {
+      background: #2d6a4f;
+      color: white;
+      padding: 18px 35px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1.1rem;
+      transition: transform 0.2s, background 0.3s;
+      display: inline-block;
+    }
+    .btn-checkout:hover {
+      background: #1a3a2a;
+      transform: translateY(-3px);
+    }
+  </style>
+</head>
+<body>
+
+  <header class="header">
+    <nav class="navbar">
+      <div class="logo"><span>🌿</span><span class="logo-texte">EcoStore</span></div>
+      <ul class="nav-liens">
+        <li><a href="index.html">Boutique</a></li>
+        <li><a href="produit.html">Produit</a></li>
+        <li><a href="panier.html" class="actif">Panier</a></li>
+        <li><a href="paiement.html">Paiement</a></li>
+        <li><a href="impact.html">Impact</a></li>
+        <li><a href="localisation.html">Points de vente</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="hero-panier">
+    <div class="container">
+      <h1>Votre Panier Éco-Responsable</h1>
+      <p>Un petit pas pour vous, un grand pas pour la planète.</p>
+    </div>
+  </section>
+
+  <main class="container">
+    <table class="table-panier">
+      <thead>
+        <tr>
+          <th>Produit</th>
+          <th>Prix Unitaire</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="display: flex; align-items: center;">
+            <img src="https://images.pexels.com/photos/4000090/pexels-photo-4000090.jpeg?auto=compress&cs=tinysrgb&w=150" class="img-mini" alt="Gourde">
+            <strong>Gourde Inox 1L</strong>
+          </td>
+          <td>89 DH</td>
+        </tr>
+        <tr>
+          <td style="display: flex; align-items: center;">
+            <img src="https://images.pexels.com/photos/7585609/pexels-photo-7585609.jpeg?auto=compress&cs=tinysrgb&w=150" class="img-mini" alt="Sac">
+            <strong>Sac en Coton Bio</strong>
+          </td>
+          <td>45 DH</td>
+        </tr>
+        <tr>
+          <td style="display: flex; align-items: center;">
+            <img src="https://images.pexels.com/photos/17312557/pexels-photo-17312557.jpeg?auto=compress&cs=tinysrgb&w=150" class="img-mini" alt="Huile">
+            <strong>Huile d'Argan Pure</strong>
+          </td>
+          <td>150 DH</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="total-section">
+      <h2 style="color: #1a3a2a; margin-bottom: 20px;">Total : <span style="color: #2d6a4f;">284 DH</span></h2>
+      <a href="paiement.html" class="btn-checkout">Valider ma commande</a>
+    </div>
+  </main>
+
+  <footer class="footer" style="background: #1a3a2a; color: white; padding: 40px 0; text-align: center;">
+    <p>EcoStore — Ayoub Abida & Youssef Al Hafrawi | EMSI 2026</p>
+  </footer>
+
+</body>
+</html>

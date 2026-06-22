@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Paiement - EcoStore</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    .paiement-container {
+      display: flex;
+      gap: 40px;
+      margin-top: 30px;
+      flex-wrap: wrap;
+    }
+    .form-paiement {
+      flex: 2;
+      min-width: 350px;
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    }
+    .form-group { margin-bottom: 20px; }
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+      color: #1a3a2a;
+    }
+    .form-group input {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-size: 1rem;
+    }
+    .recap-commande {
+      flex: 1;
+      min-width: 300px;
+      background: #f4f9f4;
+      padding: 25px;
+      border-radius: 12px;
+      height: fit-content;
+    }
+    .produit-recap {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 15px;
+      font-size: 0.95rem;
+    }
+    .btn-payer {
+      width: 100%;
+      background: #2d6a4f;
+      color: white;
+      border: none;
+      padding: 15px;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="header">
+    <nav class="navbar">
+      <div class="logo"><span>🌿</span><span class="logo-texte">EcoStore</span></div>
+      <ul class="nav-liens">
+        <li><a href="index.html">Boutique</a></li>
+        <li><a href="produit.html">Produit</a></li>
+        <li><a href="panier.html">Panier</a></li>
+        <li><a href="paiement.html" class="actif">Paiement</a></li>
+        <li><a href="impact.html">Impact</a></li>
+        <li><a href="localisation.html">Points de vente</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="container">
+    <h1 style="margin: 40px 0;">Finaliser la commande</h1>
+    <div class="paiement-container">
+      <section class="form-paiement">
+        <h3 style="margin-bottom: 20px; color: #2d6a4f;">Informations de Livraison</h3>
+        <div class="form-group">
+          <label for="nom">Nom complet</label>
+          <input type="text" id="nom" placeholder="Ayoub Abida">
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" placeholder="ayoub@example.com">
+        </div>
+        <div class="form-group">
+          <label for="adresse">Adresse de livraison</label>
+          <input type="text" id="adresse" placeholder="123 Rue Zerktouni, Casablanca">
+        </div>
+        <h3 style="margin: 30px 0 20px; color: #2d6a4f;">Paiement par Carte</h3>
+        <div class="form-group">
+          <label for="carte">Numéro de carte</label>
+          <input type="text" id="carte" placeholder="0000 0000 0000 0000">
+        </div>
+        <div style="display: flex; gap: 20px;">
+          <div class="form-group" style="flex: 1;">
+            <label for="expire">Expiration</label>
+            <input type="text" id="expire" placeholder="MM/YY">
+          </div>
+          <div class="form-group" style="flex: 1;">
+            <label for="cvv">CVV</label>
+            <input type="password" id="cvv" placeholder="123">
+          </div>
+        </div>
+        <button class="btn-payer">Confirmer le paiement (179 DH)</button>
+      </section>
+
+      <aside class="recap-commande">
+        <h3>Votre Commande</h3>
+        <hr style="margin: 15px 0; border: 0.5px solid #e0e0e0;">
+        <div class="produit-recap"><span>Gourde Inox 1L x1</span><strong>89 DH</strong></div>
+        <div class="produit-recap"><span>Sac Coton Bio x2</span><strong>90 DH</strong></div>
+        <div style="margin-top: 20px; padding-top: 15px; border-top: 2px solid #fff;">
+          <div class="produit-recap">
+            <span>Total TTC</span>
+            <span style="font-size: 1.2rem; color: #2d6a4f;">179 DH</span>
+          </div>
+        </div>
+        <div style="margin-top: 25px; background: white; padding: 15px; border-radius: 8px; font-size: 0.85rem;">
+          <p>Paiement Sécurisé : Vos données sont cryptées.</p>
+          <p style="margin-top: 10px;">Livraison estimée sous 48h à Casablanca.</p>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="footer" style="margin-top: 80px; padding: 30px 0; text-align: center; background: #1a3a2a; color: white;">
+    <p>EcoStore — Ayoub & Youssef | EMSI 2026</p>
+  </footer>
+
+</body>
+</html>
