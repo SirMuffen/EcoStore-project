@@ -147,97 +147,137 @@
   </footer>
 
   <script>
-    // Basic utilities
-    function luhnCheck(cardNumber) {
-      // remove spaces
-      var num = cardNumber.replace(/\s+/g, '');
-      if (!/^[0-9]{13,19}$/.test(num)) return false;
-      var sum = 0;
-      var shouldDouble = false;
-      for (var i = num.length - 1; i >= 0; i--) {
-        var digit = parseInt(num.charAt(i), 10);
-        if (shouldDouble) {
-          digit *= 2;
-          if (digit > 9) digit -= 9;
+    (function(){
+      // Wrap code to avoid runtime errors if some elements are missing.
+      try {
+        // Basic utilities
+        function luhnCheck(cardNumber) {
+          if (!cardNumber) return false;
+          // remove spaces
+          var num = cardNumber.replace(/\s+/g, '');
+          if (!/^[0-9]{13,19}$/.test(num)) return false;
+          var sum = 0;
+          var shouldDouble = false;
+          for (var i = num.length - 1; i >= 0; i--) {
+            var digit = parseInt(num.charAt(i), 10);
+            if (shouldDouble) {
+              digit *= 2;
+              if (digit > 9) digit -= 9;
+            }
+            sum += digit;
+            shouldDouble = !shouldDouble;
+          }
+          return (sum % 10) === 0;
         }
-        sum += digit;
-        shouldDouble = !shouldDouble;
-      }
-      return (sum % 10) === 0;
-    }
 
-    function showError(id, message) {
-      document.getElementById(id).textContent = message || '';
-    }
-
-    document.getElementById('paiementForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      // clear errors
-      ['err-nom','err-email','err-adresse','err-carte','err-expire','err-cvv'].forEach(function(id){ showError(id,''); });
-
-      var valid = true;
-      var nom = document.getElementById('nom').value.trim();
-      var email = document.getElementById('email').value.trim();
-      var adresse = document.getElementById('adresse').value.trim();
-      var carte = document.getElementById('carte').value.trim();
-      var expire = document.getElementById('expire').value.trim();
-      var cvv = document.getElementById('cvv').value.trim();
-
-      if (!nom) { showError('err-nom','Veuillez saisir votre nom.'); valid = false; }
-      if (!email) { showError('err-email','Veuillez saisir votre email.'); valid = false; }
-      if (!adresse) { showError('err-adresse','Veuillez saisir votre adresse.'); valid = false; }
-
-      // Card checks
-      var cleanedCard = carte.replace(/\s+/g, '');
-      if (!luhnCheck(carte)) { showError('err-carte','Numéro de carte invalide.'); valid = false; }
-
-      // expiry MM/YY
-      var expMatch = expire.match(/^(0[1-9]|1[0-2])\/(\d{2})$/);
-      if (!expMatch) { showError('err-expire','Date d\'expiration invalide (MM/YY).'); valid = false; }
-      else {
-        var month = parseInt(expMatch[1],10);
-        var year = parseInt(expMatch[2],10) + 2000;
-        var now = new Date();
-        var expDate = new Date(year, month);
-        if (expDate <= now) { showError('err-expire','La carte est expirée.'); valid = false; }
-      }
-
-      if (!/^[0-9]{3,4}$/.test(cvv)) { showError('err-cvv','CVV invalide.'); valid = false; }
-
-      if (!valid) {
-        // focus first error
-        var first = document.querySelector('.error:not(:empty)');
-        if (first) {
-          first.previousElementSibling.focus();
+        function showError(id, message) {
+          var el = document.getElementById(id);
+          if (el) el.textContent = message || '';
         }
-        return;
+
+        var form = document.getElementById('paiementForm');
+        if (form) {
+          form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            // clear errors
+            ['err-nom','err-email','err-adresse','err-carte','err-expire','err-cvv'].forEach(function(id){ showError(id,''); });
+
+            var valid = true;
+            var nomEl = document.getElementById('nom');
+            var emailEl = document.getElementById('email');
+            var adresseEl = document.getElementById('adresse');
+            var carteEl = document.getElementById('carte');
+            var expireEl = document.getElementById('expire');
+            var cvvEl = document.getElementById('cvv');
+
+            var nom = nomEl ? nomEl.value.trim() : '';
+            var email = emailEl ? emailEl.value.trim() : '';
+            var adresse = adresseEl ? adresseEl.value.trim() : '';
+            var carte = carteEl ? carteEl.value.trim() : '';
+            var expire = expireEl ? expireEl.value.trim() : '';
+            var cvv = cvvEl ? cvvEl.value.trim() : '';
+
+            if (!nom) { showError('err-nom','Veuillez saisir votre nom.'); valid = false; }
+            if (!email) { showError('err-email','Veuillez saisir votre email.'); valid = false; }
+            if (!adresse) { showError('err-adresse','Veuillez saisir votre adresse.'); valid = false; }
+
+            // Card checks
+            if (!luhnCheck(carte)) { showError('err-carte','Numéro de carte invalide.'); valid = false; }
+
+            // expiry MM/YY
+            var expMatch = expire ? expire.match(/^(0[1-9]|1[0-2])\/(\d{2})$/) : null;
+            if (!expMatch) { showError('err-expire','Date d\'expiration invalide (MM/YY).'); valid = false; }
+            else {
+              var month = parseInt(expMatch[1],10);
+              var year = parseInt(expMatch[2],10) + 2000;
+              var now = new Date();
+              // Treat card valid through the last day of the expiration month
+              // new Date(year, month) returns first day of the next month (month is 0-based), so if that <= now the card is expired
+              var expDate = new Date(year, month);
+              if (expDate <= now) { showError('err-expire','La carte est expirée.'); valid = false; }
+            }
+
+            if (!/^[0-9]{3,4}$/.test(cvv)) { showError('err-cvv','CVV invalide.'); valid = false; }
+
+            if (!valid) {
+              // focus first error (safer fallback)
+              var errors = document.querySelectorAll('.error');
+              for (var i=0;i<errors.length;i++){
+                if (errors[i].textContent && errors[i].textContent.trim().length){
+                  var prev = errors[i].previousElementSibling;
+                  if (prev && typeof prev.focus === 'function') prev.focus();
+                  break;
+                }
+              }
+              return;
+            }
+
+            // If valid, simulate secure submit and redirect to confirmation page
+            var btn = document.getElementById('submitBtn');
+            if (btn) {
+              btn.disabled = true;
+              btn.textContent = 'Traitement...';
+            }
+
+            // NOTE: In production, integrate with a payment provider (Stripe, PayPal) instead of collecting raw card details.
+            setTimeout(function(){
+              try {
+                // Redirect to confirmation page that we create in the project
+                window.location.href = 'confirmation.html';
+              } catch (err) {
+                console.error('Redirection failed:', err);
+                if (btn) { btn.disabled = false; btn.textContent = 'Confirmer le paiement (179 DH)'; }
+              }
+            }, 800);
+          });
+        }
+
+        // Optional: format card number as user types (guarded)
+        var carteInput = document.getElementById('carte');
+        if (carteInput) {
+          carteInput.addEventListener('input', function(e){
+            var v = e.target.value.replace(/\D/g,'').slice(0,19);
+            var parts = [];
+            for (var i=0;i<v.length;i+=4) parts.push(v.slice(i,i+4));
+            e.target.value = parts.join(' ');
+          });
+        }
+
+        // Auto-insert slash in expiry (guarded)
+        var expInput = document.getElementById('expire');
+        if (expInput) {
+          expInput.addEventListener('input', function(e){
+            var v = e.target.value.replace(/\D/g,'').slice(0,4);
+            if (v.length >= 3) e.target.value = v.slice(0,2) + '/' + v.slice(2);
+            else e.target.value = v;
+          });
+        }
+
+      } catch (err) {
+        // In case of unexpected runtime error, log it so the developer can inspect in console
+        console.error('Erreur script paiement:', err);
       }
-
-      // If valid, simulate secure submit and redirect to confirmation page
-      var btn = document.getElementById('submitBtn');
-      btn.disabled = true;
-      btn.textContent = 'Traitement...';
-
-      // NOTE: In production, integrate with a payment provider (Stripe, PayPal) instead of collecting raw card details.
-      setTimeout(function(){
-        window.location.href = 'confirmation.html';
-      }, 800);
-    });
-
-    // Optional: format card number as user types
-    document.getElementById('carte').addEventListener('input', function(e){
-      var v = e.target.value.replace(/\D/g,'').slice(0,19);
-      var parts = [];
-      for (var i=0;i<v.length;i+=4) parts.push(v.slice(i,i+4));
-      e.target.value = parts.join(' ');
-    });
-
-    // Auto-insert slash in expiry
-    document.getElementById('expire').addEventListener('input', function(e){
-      var v = e.target.value.replace(/\D/g,'').slice(0,4);
-      if (v.length >= 3) e.target.value = v.slice(0,2) + '/' + v.slice(2);
-      else e.target.value = v;
-    });
+    })();
   </script>
 </body>
 </html>
