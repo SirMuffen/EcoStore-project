@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EcoStore - Boutique Durable</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <header class="header">
+    <nav class="navbar">
+      <div class="logo"><span>🌿</span><span class="logo-texte">EcoStore</span></div>
+      <ul class="nav-liens">
+        <li><a href="index.html" class="actif">Boutique</a></li>
+        <li><a href="produit.html">Produit</a></li>
+        <li><a href="panier.html">Panier</a></li>
+        <li><a href="paiement.html">Paiement</a></li>
+        <li><a href="impact.html">Impact</a></li>
+        <li><a href="localisation.html">Points de vente</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="hero" style="background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.pexels.com/photos/1072179/pexels-photo-1072179.jpeg?auto=compress&cs=tinysrgb&w=1260') center/cover; padding: 100px 0; text-align: center; color: white;">
+    <div class="container">
+      <h1>Consommez Mieux, Vivez Green</h1>
+      <p>La marketplace marocaine éco-responsable de référence.</p>
+    </div>
+  </section>
+
+  <main class="container" style="margin-top: 50px;">
+    <div class="grille-produits" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-bottom: 50px;">
+
+      <div class="carte-produit" style="background: white; padding: 15px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+        <img src="https://images.pexels.com/photos/4000090/pexels-photo-4000090.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Gourde" style="width: 100%; height: 250px; object-fit: cover; border-radius: 8px;">
+        <h3>Gourde Inox 1L</h3>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 15px;">
+          <strong>89 DH</strong>
+          <a href="produit.html" style="background: #2d6a4f; color: white; padding: 8px 15px; border-radius: 5px; text-decoration: none;">Détails</a>
+        </div>
+      </div>
+
+      <div class="carte-produit" style="background: white; padding: 15px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+        <img src="https://images.pexels.com/photos/7585609/pexels-photo-7585609.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Sac Coton" style="width: 100%; height: 250px; object-fit: cover; border-radius: 8px;">
+        <h3>Sac en Coton Bio</h3>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 15px;">
+          <strong>45 DH</strong>
+          <a href="produit.html" style="background: #2d6a4f; color: white; padding: 8px 15px; border-radius: 5px; text-decoration: none;">Détails</a>
+        </div>
+      </div>
+
+      <div class="carte-produit" style="background: white; padding: 15px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+        <img src="https://images.pexels.com/photos/17312557/pexels-photo-17312557.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Huile Argan" style="width: 100%; height: 250px; object-fit: cover; border-radius: 8px;">
+        <h3>Huile d'Argan Pure</h3>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 15px;">
+          <strong>150 DH</strong>
+          <a href="produit.html" style="background: #2d6a4f; color: white; padding: 8px 15px; border-radius: 5px; text-decoration: none;">Détails</a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="footer" style="background: #1a3a2a; color: white; padding: 40px 0; text-align: center;">
+    <p>EcoStore — Ayoub Abida & Youssef Al Hafrawi | EMSI 2026</p>
+  </footer>
+
+</body>
+</html>

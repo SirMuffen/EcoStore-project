@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gourde Inox 1L - EcoStore</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    .product-layout {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 50px;
+      margin-top: 50px;
+    }
+    .product-image img {
+      width: 100%;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+    .product-info h1 { font-size: 2.5rem; color: #2d6a4f; margin-bottom: 10px; }
+    .price { font-size: 1.8rem; font-weight: bold; color: #1a3a2a; margin: 20px 0; }
+    .btn-panier-achat {
+      display: inline-block;
+      background: #2d6a4f;
+      color: white;
+      padding: 15px 40px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+    .btn-panier-achat:hover { background: #1a3a2a; }
+    .related-products { margin-top: 80px; border-top: 1px solid #eee; padding-top: 40px; }
+    .related-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+    .related-card img { width: 100%; height: 200px; object-fit: cover; border-radius: 10px; }
+  </style>
+</head>
+<body>
+
+  <header class="header">
+    <nav class="navbar">
+      <div class="logo"><span>🌿</span><span class="logo-texte">EcoStore</span></div>
+      <ul class="nav-liens">
+        <li><a href="index.html">Boutique</a></li>
+        <li><a href="produit.html" class="actif">Produit</a></li>
+        <li><a href="panier.html">Panier</a></li>
+        <li><a href="paiement.html">Paiement</a></li>
+        <li><a href="impact.html">Impact</a></li>
+        <li><a href="localisation.html">Points de vente</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="container">
+    <div class="product-layout">
+      <div class="product-image">
+        <img src="https://images.pexels.com/photos/4000090/pexels-photo-4000090.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Gourde Inox">
+      </div>
+      <div class="product-info">
+        <p style="color: #52b788; font-weight: bold; text-transform: uppercase;">Best-seller durable</p>
+        <h1>Gourde Inox 1L</h1>
+        <p class="price">89 DH</p>
+        <p style="line-height: 1.6; color: #555;">
+          Alternative parfaite au plastique. Cette gourde en acier inoxydable garde vos boissons fraîches pendant 24h et chaudes pendant 12h. Durable, élégante et 100% recyclable.
+        </p>
+        <div style="margin: 30px 0;">
+          <a href="panier.html" class="btn-panier-achat">Ajouter au panier — 89 DH</a>
+        </div>
+        <ul style="list-style: none; padding: 0; color: #2d6a4f; font-weight: 500;">
+          <li>✓ Livraison gratuite (dès 200 DH)</li>
+          <li>✓ 1 arbre planté avec cet achat</li>
+          <li>✓ Zéro plastique dans l'emballage</li>
+        </ul>
+      </div>
+    </div>
+
+    <section class="related-products">
+      <h2>Vous aimerez aussi</h2>
+      <div class="related-grid">
+        <div class="related-card">
+          <a href="produit.html">
+            <img src="https://images.pexels.com/photos/7585609/pexels-photo-7585609.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Sac Coton">
+            <h4 style="margin-top: 10px; color: #333;">Sac en Coton Bio</h4>
+          </a>
+        </div>
+        <div class="related-card">
+          <a href="produit.html">
+            <img src="https://images.pexels.com/photos/17312557/pexels-photo-17312557.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Huile Argan">
+            <h4 style="margin-top: 10px; color: #333;">Huile d'Argan Pure</h4>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer" style="background: #1a3a2a; color: white; padding: 40px 0; text-align: center; margin-top: 80px;">
+    <p>EcoStore — Ayoub Abida & Youssef Al Hafrawi | EMSI 2026</p>
+  </footer>
+
+</body>
+</html>
